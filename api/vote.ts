@@ -7,7 +7,7 @@ export const router = express.Router();
 
 router.post("/", (req, res) => {
     let vote: Vote = req.body;
-
+    
     let sql = "INSERT INTO `votes` (`userID`, `imageID`, `elorating`, `voteDate`) VALUES (?, ?, ?, NOW())";
     sql = mysql.format(sql, [
         vote.userID,
