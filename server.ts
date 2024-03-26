@@ -1,19 +1,11 @@
-
 import http from "http";
 import {app} from "./app";
 import { conn } from "./dbconnect";
-import cors from 'cors';
+
 
 
 const port = process.env.port || 3000;
 const server = http.createServer(app);
-
-
-app.use(
-  cors({
-    origin: "*",
-  })
-);
 
 
 conn.connect((err)=>{
