@@ -61,32 +61,3 @@ router.get("/", (req, res) => {
       res.status(201).json({ affected_row: result.affectedRows });
     });
   });
-
-
-
-
-
-
-
-
-
-
-// router.post("/uploadImage", async (req, res) => {
-//   const UserID = +req.body.UserID;
-//   const ImagePath = req.body.ImagePath;
-//   const UploadDate = req.body.UploadDate;
-
-//   let Elo = 1000;
-//   // เพิ่มข้อมูลรูปลงในฐานข้อมูล
-//   let sql = "INSERT INTO image (ImagePath, UploadDate, EloRating, UserID) VALUES (?, ?, ?, ?)";
-//   sql = mysql.format(sql, [ImagePath, UploadDate, Elo, UserID]);
-
-//   conn.query(sql, (err, result) => {
-//       if (err) {
-//           console.error("Error adding image to database:", err);
-//           res.status(500).json({ error: "An error occurred while adding image to database" });
-//       } else {
-//           res.status(201).json({ message: "Image added to database successfully" });
-//       }
-//   });
-// });
