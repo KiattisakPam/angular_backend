@@ -53,6 +53,16 @@ router.get("/7day", (req, res)=>{
 
 
 
+//user ไม่รวม admin
+router.get("/", (req, res) => {
+    conn.query('SELECT * FROM user WHERE Role not in("Admin")', (err, result) => {
+      if(err) throw err;
+      res.json(result);
+    });
+  });
+
+
+
 
 
 
