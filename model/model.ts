@@ -21,3 +21,12 @@ export interface Vote {
   imageID: number;
   elorating: number;
 }
+
+export interface userdataa {
+  UserID: number;
+  Username: string;
+  Password: string;
+  name: string;
+  Avatar : string;
+  Role : string;
+}

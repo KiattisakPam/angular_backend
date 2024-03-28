@@ -12,6 +12,21 @@ router.get("/", (req, res) => {
     });
   });
 
+
+  router.get("/:id", (req, res) => {
+    let id = req.params.id;
+    let sql = 'SELECT * FROM image where UserID = ?';
+    sql = mysql.format(sql, [id]);
+    
+    conn.query(sql, (err, result) => {
+      if (err) throw err;
+  
+        let userObject = result;
+        res.status(201).json(userObject);
+    });
+  });
+
+
   router.put("/:id", async (req, res) => {
 
     const id = + req.params.id;
@@ -46,3 +61,33 @@ router.get("/", (req, res) => {
       res.status(201).json({ affected_row: result.affectedRows });
     });
   });
+
+
+
+
+
+
+
+
+  router.post("/:UserID/:ImagePath", async (req, res) => {
+    const UserID = +req.params.UserID;
+    const ImagePath = req.params.ImagePath;
+
+    let update: imageUpload = req.body; // รับข้อมูลที่ต้องการอัปเดตจาก req.body
+
+    let Elo = 1000;
+    // เพิ่มข้อมูลรูปลงในฐานข้อมูล
+    let sql = "INSERT INTO image (ImagePath, UploadDate, EloRating, UserID) VALUES (?, ?, ?, ?)";
+    sql = mysql.format(sql, [ImagePath, update.UploadDate, Elo, UserID]);
+
+    conn.query(sql, (err, result) => {
+        if (err) {
+            console.error("Error adding image to database:", err);
+            res.status(500).json({ error: "An error occurred while adding image to database" });
+        } else {
+            res.status(201).json({ message: "Image added to database successfully" });
+        }
+    });
+});
+
+
